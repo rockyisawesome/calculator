@@ -1,6 +1,7 @@
 let screen = document.getElementById('screen')
 buttons = document.querySelectorAll('button');
 let screenValue = '';
+//let er = getElementById('error');
 
 let tippu = false;
 
@@ -10,12 +11,17 @@ let tippu = false;
          console.log("button text is", buttonText)
          console.log(tippu)
 
-         if(buttonText === 'X'){
-             buttonText = '*';
+         if(buttonText === 'X' || buttonText === '/' || buttonText === '+' || buttonText === '-'){
+            // buttonText = '*';
              screenValue += buttonText;
              screen.value = screenValue;
-         }
-         else if(buttonText == ')'){
+        }
+        //  else if(buttonText === '/'){
+        //    // buttonText = '*';
+        //     screenValue += buttonText;
+        //     screen.value = screenValue;
+        // }
+         else if(buttonText == 'del'){
              console.log(typeof screen.value)
              screen.value  = screen.value.slice(0, (screen.value.length-1));
              screenValue = screen.value;
@@ -30,13 +36,19 @@ let tippu = false;
          
          else if(buttonText == '='){
             if (!tippu) {
-            screenValue = eval(screenValue);
+            try {
+                screenValue = eval(screenValue);
+            }
+            catch(err){
+                document.getElementById('er').innerText = err.message;
+                document.getElementById('er').innerText += "\nSaale math to pd le ache se ";
+            }
              screenValue ? screen.value = screenValue : screenValue = screen.value = "";
             //  screenValue = screen.value;
             tippu = !tippu;
             }
             else{
-                screenValue = eval(screenValue);
+             screenValue = eval(screenValue);
              screenValue ? screen.value = screenValue : screenValue = screen.value = "";
             }
          }else{
