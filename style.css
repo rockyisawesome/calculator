@@ -1,7 +1,10 @@
 .container{
     text-align: center;
     margin-top: 20px;
-    background: crimson;
+    background: grey;
+}
+body{
+    background: grey;
 }
 table{
     margin: auto;
